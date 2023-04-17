@@ -7,12 +7,7 @@ import random
 import sys
 
 
-a = []
-e = []
-o = []
-u = []
-s = []
-dict = {'e': '','s': '','i': ''','a':''','o': ''}
+
 
 
 
@@ -59,55 +54,146 @@ class Ui_Generator(object):
         self.statusbar = QtWidgets.QStatusBar(Generator)
         self.statusbar.setObjectName("statusbar")
         Generator.setStatusBar(self.statusbar)
-        self.genbut.clicked.connect(generating())
         self.retranslateUi(Generator)
         QtCore.QMetaObject.connectSlotsByName(Generator)
-
-    def generating(self):
-        global a
-        global e
-        global u
-        global o
-        test = [2, 3, 4]
-        r9 = random.choice(test)
-        n9 = []
-        n10 = []
-        n11 = []
-        n12 = []
 
     def r9(r9, big_arr, n9):
         arr = []
         a = [1, 2, 3, 4, 5]
-        b = [1, 2, 3, 4, 5]
-        global bad_arr
+        b = [1, 2, 3]
+        c = [1, 2, 3]
         for i in range(r9):
-            ind = random.choice(a)
+            key = random.choice([0, 1])
+            ind = random.choice(a) - 1
             arr.append(ind)
-            a.remove(ind)
-            ind1 = random.randint(1, len(b))
-            b.remove(ind1)
-            w1 = random.randint(1, len(big_arr[ind1]))
-            big_arr[ind1].remove(w1)
-            w2 = random.randint(1, len(big_arr[ind1]))
-            big_arr[ind1].remove(w2)
-            w3 = random.randint(1, len(big_arr[ind1]))
-            big_arr[ind1].remove(w3)
-            n9[ind - 1] = [w1, w2, w3, sep = '\n']
-            f = [i for i in range(5) if i not in arr]
-            for i in a:
-                ind = random.choice(a)
-                arr.append(ind)
-                a.remove(ind)
-                ind1 = random.randint(1, len(b))
-                b.remove(ind1)
-                w1 = random.randint(1, len(big_arr[ind1]))
-                big_arr[ind1].remove(w1)
-                w2 = random.randint(1, len(big_arr[ind1]))
-                big_arr[ind1].remove(w2)
-                w3 = random.randint(1, len(big_arr[ind1]))
-                big_arr[ind1].remove(w3)
-                n9[i - 1] = [w1, w2, w3]
-            return n9, big_arr
+            ind1 = random.choice(b) - 1
+            b.remove(ind1 + 1)
+            a.remove(ind + 1)
+            w1 = big_arr[ind1][key][random.randint(0, len(big_arr[ind1][key]) - 1)]
+            if len(big_arr[ind1][key]) > 1:
+                big_arr[ind1][key].remove(w1)
+            w2 = big_arr[ind1][key][random.randint(0, len(big_arr[ind1][key]) - 1)]
+            if len(big_arr[ind1][key]) > 1:
+                big_arr[ind1][key].remove(w2)
+            w3 = big_arr[ind1][key][random.randint(0, len(big_arr[ind1][key]) - 1)]
+            if len(big_arr[ind1][key]) > 1:
+                big_arr[ind1][key].remove(w3)
+            n9[ind] = list(set([w1, w2, w3]))
+        for i in a:
+            ind = i - 1
+            ind1 = random.choice(c) - 1
+            w1 = big_arr[ind1][0][random.randint(0, len(big_arr[ind1][0]) - 1)]
+            if len(big_arr[ind1][0]) > 1:
+                big_arr[ind1][0].remove(w1)
+            w2 = big_arr[ind1][0][random.randint(0, len(big_arr[ind1][0]) - 1)]
+            if len(big_arr[ind1][0]) > 1:
+                big_arr[ind1][0].remove(w2)
+            w3 = big_arr[ind1][1][random.randint(0, len(big_arr[ind1][1]) - 1)]
+            if len(big_arr[ind1][0]) > 1:
+                big_arr[ind1][1].remove(w3)
+            n9[ind] = list(set([w1, w2, w3]))
+        return n9
+
+    def r10(r10, big_arr2, n10):
+        arr = []
+        a = [1, 2, 3, 4, 5]
+        b = [1, 2, 3, 4, 5]
+        c = [1, 2, 3, 4, 5]
+        for i in range(r10):
+            key = random.choice([0, 1])
+            ind1 = random.choice(b) - 1
+            b.remove(ind1 + 1)
+            w1 = big_arr2[ind1][key][random.randint(0, len(big_arr2[ind1][key]) - 1)]
+            if len(big_arr2[ind1][key]) > 1:
+                big_arr2[ind1][key].remove(w1)
+            w2 = big_arr2[ind1][key][random.randint(0, len(big_arr2[ind1][key]) - 1)]
+            if len(big_arr2[ind1][key]) > 1:
+                big_arr2[ind1][key].remove(w2)
+            w3 = big_arr2[ind1][key][random.randint(0, len(big_arr2[ind1][key]) - 1)]
+            if len(big_arr2[ind1][key]) > 1:
+                big_arr2[ind1][key].remove(w3)
+            n10[ind1] = list(set([w1, w2, w3]))
+        for i in b:
+            ind1 = i - 1
+            w1 = big_arr2[ind1][0][random.randint(0, len(big_arr2[ind1][0]) - 1)]
+            if len(big_arr2[ind1][0]) > 1:
+                big_arr2[ind1][0].remove(w1)
+            w2 = big_arr2[ind1][0][random.randint(0, len(big_arr2[ind1][0]) - 1)]
+            if len(big_arr2[ind1][0]) > 1:
+                big_arr2[ind1][0].remove(w2)
+            w3 = big_arr2[ind1][1][random.randint(0, len(big_arr2[ind1][1]) - 1)]
+            if len(big_arr2[ind1][1]) > 1:
+                big_arr2[ind1][1].remove(w3)
+            n10[ind1] = list(set([w1, w2, w3]))
+        return n10
+
+    def r11(r11, big_arr3, n11):
+        arr = []
+        a = [1, 2, 3, 4, 5]
+        b = [1, 2]
+        c = [1, 2]
+        for i in range(r11):
+            ind = random.choice(a) - 1
+            arr.append(ind)
+            arrind1 = random.choice(b) - 1
+            a.remove(ind + 1)
+            key1 = random.randint(0, len(big_arr3[arrind1]) - 1)
+            ind2 = random.randint(0, len(big_arr3[arrind1][key1]) - 1)
+            ind4 = random.randint(0, len(big_arr3[arrind1][key1]) - 1)
+            w1 = big_arr3[arrind1][key1][ind2][random.randint(0, len(big_arr3[arrind1][key1][ind2]) - 1)]
+            if len(big_arr3[arrind1][key1][ind2]) > 1:
+                big_arr3[arrind1][key1][ind2].remove(w1)
+            w3 = big_arr3[arrind1][key1][ind4][random.randint(0, len(big_arr3[arrind1][key1][ind4]) - 1)]
+            if len(big_arr3[arrind1][key1][ind4]) > 1:
+                big_arr3[arrind1][key1][ind4].remove(w3)
+            n11[ind] = [w1, w3]
+        for i in a:
+            ind = i - 1
+            ind1 = random.choice(c) - 1
+            c.remove(ind1 + 1)
+            key = random.randint(0, len(big_arr3[ind1]) - 1)
+            ind2 = random.randint(0, len(big_arr3[arrind1][key]) - 1)
+            ind4 = random.randint(0, len(big_arr3[arrind1][key - 1]) - 1)
+            w1 = big_arr3[ind1][key][ind2][random.randint(0, len(big_arr3[ind1][key][ind2]) - 1)]
+            if len(big_arr3[ind1][key][ind2]) > 1:
+                big_arr3[ind1][key][ind2].remove(w1)
+            w3 = big_arr3[ind1][key - 1][ind4][random.randint(0, len(big_arr3[ind1][key - 1][ind4]) - 1)]
+            if len(big_arr3[ind1][key - 1][ind4]) > 1:
+                big_arr3[ind1][key - 1][ind4].remove(w3)
+            n11[ind] = [w1, w3]
+        return n11
+
+    def r12(re12, big_arr4, n12):
+        arr = []
+        a = [1, 2, 3, 4, 5]
+        b = [1, 2]
+        c = [1, 2, 3, 4, 5]
+        for i in range(re12):
+            ind = random.choice(a) - 1
+            arr.append(ind)
+            arrind1 = random.choice(b) - 1
+            a.remove(ind + 1)
+            key1 = random.randint(0, len(big_arr4[arrind1]) - 1)
+            ind2 = random.randint(0, len(big_arr4[arrind1][key1]) - 1)
+            ind4 = random.randint(0, len(big_arr4[arrind1][key1]) - 1)
+            w1 = big_arr4[arrind1][key1][ind2][random.randint(0, len(big_arr4[arrind1][key1][ind2]) - 1)]
+            big_arr4[arrind1][key1][ind2].remove(w1)
+            w3 = big_arr4[arrind1][key1][ind4][random.randint(0, len(big_arr4[arrind1][key1][ind4]) - 1)]
+            big_arr4[arrind1][key1][ind4].remove(w3)
+            n12[ind] = [w1, w3]
+        for i in a:
+            ind = i - 1
+            ind1 = random.choice(c) - 1
+            c.remove(ind1 + 1)
+            key = random.randint(0, len(big_arr4[ind1]) - 1)
+            ind2 = random.randint(0, len(big_arr4[arrind1][key]) - 1)
+            ind4 = random.randint(0, len(big_arr4[arrind1][key - 1]) - 1)
+            w1 = big_arr4[ind1][key][ind2][random.randint(0, len(big_arr4[ind1][key][ind2]) - 1)]
+            big_arr4[ind1][key][ind2].remove(w1)
+            w3 = big_arr4[ind1][key - 1][ind4][random.randint(0, len(big_arr4[ind1][key - 1][ind4]) - 1)]
+            big_arr4[ind1][key - 1][ind4].remove(w3)
+            n12[ind] = [w1, w3]
+        return [n12, big_arr4]
 
     def add_label(self):
         self.new_text.setText('Пожалуйста, подождите...')
@@ -123,7 +209,6 @@ class Ui_Generator(object):
 
     def get_vars(self, n):
         print(n)
-
 
 
     def retranslateUi(self, Generator):
@@ -145,6 +230,10 @@ if __name__ == "__main__":
     ui.setupUi(Generator)
     Generator.show()
     sys.exit(app.exec_())
+
+
+
+
 
 
 
